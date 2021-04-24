@@ -41,13 +41,7 @@ class Helicopter {
     // TODO: move
   }
 
-  _setListeners() {
-    document.addEventListener('keydown', e => {
-      // TODO
-    })
-
-    document.addEventListener('keyup', e => {
-      // TODO
-    })
+  onKeyEvent(event) {
+    // TODO
   }
 }

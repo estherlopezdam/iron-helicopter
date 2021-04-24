@@ -13,32 +13,36 @@ class Game {
     // TODO: loop. clear, draw, move, addObstacle, checkCollisions, clearObstacles
   }
 
-  _clearObstacles() {
+  clearObstacles() {
     // TODO: filter only visible obstacles (call o.isVisible())
   }
 
-  _addObstacle() {
+  addObstacle() {
     // TODO: add new Obstacle every 100 ticks
   }
 
-  _clear() {
+  clear() {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
   }
 
-  _draw() {
+  draw() {
     // TODO: draw everything
   }
 
-  _move() {
+  move() {
     // TODO: move everything
   }
 
-  _checkCollisions() {
+  checkCollisions() {
     // TODO: check helicopter on floor?
     // TODO: iterate obstacles. check colX and colY
   }
 
-  _gameOver() {
+  onKeyEvent(event) {
+    // TODO
+  }
+
+  gameOver() {
     clearInterval(this.intervalId)
 
     this.ctx.font = "40px Comic Sans MS";
