@@ -1,7 +1,7 @@
 class Weapon {
   constructor(shooter) {
     this.shooter = shooter;
-    this.bullets = []
+    this.bullets = [];
   }
 
   shoot() {
@@ -11,18 +11,18 @@ class Weapon {
       this.shooter.y + this.shooter.h * 0.9,
     )
 
-    this.bullets.push(bullet)
+    this.bullets.push(bullet);
   }
 
   clearBullets() {
-    this.bullets = this.bullets.filter(b => b.isVisible())
+    this.bullets = this.bullets.filter(b => b.isVisible());
   }
 
   draw() {
-    this.bullets.forEach(b => b.draw())
+    this.bullets.forEach(b => b.draw());
   }
 
   move() {
-    this.bullets.forEach(b => b.move())
+    this.bullets.forEach(b => b.move());
   }
 }

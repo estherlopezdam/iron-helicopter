@@ -1,5 +1,3 @@
-DEMO: https://ironptsolutions.github.io/iron-helicopter/
-
 ## Iteración 1
 
 Empieza por analizar el código, mirando index.js como punto de entrada, game.js, background.js, helicopter.js, etc. Analiza qué hace cada parte de código y trata de explicarlo a tu grupo.

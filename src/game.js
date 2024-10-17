@@ -10,6 +10,18 @@ class Game {
   }
 
   start() {
+    this.intervalId = setInterval(() => {
+      this.clear();
+
+      this.move();
+      this.draw();
+      
+      this.tick ++;
+
+    }, 1000 / 60);
+    
+
+
     // TODO: loop. clear, draw, move, addObstacle
   }
 
@@ -22,14 +34,24 @@ class Game {
   }
 
   draw() {
+    this.bg.draw();
+    this.helicopter.draw();
     // TODO: draw everything
   }
 
   move() {
+    this.bg.move();
+    this.helicopter.move();
     // TODO: move everything
   }
 
-  onKeyEvent(event) {
+  onKeyDown(code) {
+    this.helicopter.onKeyDown(code);
+    // TODO
+  }
+
+  onKeyUp(code) {
+    this.helicopter.onKeyUp(code);
     // TODO
   }
 }
