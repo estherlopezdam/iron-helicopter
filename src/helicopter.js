@@ -17,8 +17,6 @@ class Helicopter {
     this.ax = 0;
     this.g = 0.1;
 
-    this.isFloor = false;
-
     this.img = new Image();
     this.img.src =
       "https://2.bp.blogspot.com/-P6ZbLE-rnFM/WPTQh65UtMI/AAAAAAAABF8/9iYl-cIUEtIhj2JDTixyqZNeBn183AdmQCLcB/s1600/helicopter-spritesheet.png";
@@ -59,7 +57,15 @@ class Helicopter {
   }
 
   isFloor() {
-    // TODO: check if floor
+      // Verificar si el helicóptero ha tocado el suelo (parte inferior del canvas)
+    if (this.y + this.h >= this.ctx.canvas.height) {
+      // Si es así, lo posicionamos en el suelo y detenemos el movimiento vertical
+      this.y = this.ctx.canvas.height - this.h;  // Ajustar la posición justo en el suelo
+      this.vy = 0;  // Detener el movimiento vertical
+      return true;
+    }
+    return false;
+
   }
 
   move() {
@@ -90,6 +96,12 @@ class Helicopter {
       this.x = this.ctx.canvas.width - this.w;
       this.vx = 0;
     }
+
+    if (this.isFloor()) {
+      // Si ha tocado el suelo, detener el movimiento vertical
+      this.vy = 0;
+    }
+  
       
 
     
