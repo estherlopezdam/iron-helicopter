@@ -10,13 +10,14 @@ class Helicopter {
     this.h = 40;
 
     this.x = 0;
-    this.y = 0;
+    this.y = this.ctx.canvas.height / 2;
     this.vx = 0;
     this.vy = 0;
     this.ay = 0;
     this.ax = 0;
-    //this.g = 0.1;
-    this.isMovingVertically = false;  
+    this.g = 0.1;
+
+    this.isFloor = false;
 
     this.img = new Image();
     this.img.src =
@@ -40,7 +41,7 @@ class Helicopter {
       this.img.width, // cogemos el ancho entero de la imagen para seleccionar todo el helicoptero
       this.img.frameHeight, // le decimos el tamaño del recorte de la imagen que queremos recortar 
       this.x,
-      this.ctx.canvas.height / 2,
+      this.y,
       this.w, // tamaño del canvas
       this.h
     )
@@ -62,9 +63,9 @@ class Helicopter {
   }
 
   move() {
-    if(!this.isMovingVertically) {
-      //this.vy += this.g;
-    }
+    
+    this.vy += this.g;
+    
     
     this.x += this.vx;
     this.y += this.vy;
@@ -89,9 +90,7 @@ class Helicopter {
       this.x = this.ctx.canvas.width - this.w;
       this.vx = 0;
     }
-      // Imprimir la posición del helicóptero en la consola para depurar
-      console.log(`Helicóptero - x: ${this.x}, y: ${this.y}, vx: ${this.vx}, vy: ${this.vy}`);
- 
+      
 
     
   }
@@ -99,13 +98,11 @@ class Helicopter {
   onKeyDown(code) {
     switch (code) {
       case UP:          
-              this.vy = -10;  
-              this.isMovingVertically = true;                                
+              this.vy = -10;                                
           break;
 
       case DOWN:          
-              this.vy = 10;   
-              this.isMovingVertically = true;           
+              this.vy = 10;         
           
           break;
 
@@ -125,8 +122,7 @@ class Helicopter {
       case UP:         
             
       case DOWN:          
-              this.vy = 0; 
-              this.isMovingVertically = false;             
+              this.vy = 0;           
           
           break;
 
