@@ -13,8 +13,9 @@ class Game {
     this.intervalId = setInterval(() => {
       this.clear();
 
-      this.move();
       this.draw();
+      this.move();
+      
       
       this.tick ++;
       this.addObstacle();
@@ -50,6 +51,12 @@ class Game {
     
     // TODO: draw everything
   }
+  checkCollisions() {
+    if (this.helicopter.checkCollision(this.obstacles) || this.helicopter.isFloor()) {
+      this.gameOver();
+    }
+
+  }
 
   move() {
     this.bg.move();
@@ -59,9 +66,7 @@ class Game {
       obstacle.move();     
     });
 
-    if (this.helicopter.checkCollision(this.obstacles) || this.helicopter.isFloor()) {
-      this.gameOver();
-    }
+    this.checkCollisions();
    
   }
 
@@ -79,9 +84,7 @@ class Game {
     // Detener el juego
     clearInterval(this.intervalId); 
     this.clear();
-    if(this.bg) {
-      this.bg.draw();
-    }
+    this.bg.draw();
     
     
 

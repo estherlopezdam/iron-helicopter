@@ -110,21 +110,25 @@ class Helicopter {
   onKeyDown(code) {
     switch (code) {
       case UP:          
-              this.vy = -10;                                
+              this.vy = -10;  
+              this.vx = 0;                              
           break;
 
       case DOWN:          
-              this.vy = 10;         
+              this.vy = 10;  
+              this.vx = 0;       
           
           break;
 
       case RIGHT:          
-              this.vx = 10;                            
+              this.vx = 10;     
+              this.vy = 0;                       
           
           break;
       
       case LEFT:
               this.vx = -10;
+              this.vy = 0;
           break;
    }
   }
