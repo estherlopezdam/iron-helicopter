@@ -2,7 +2,7 @@ class Obstacle {
   constructor(ctx) {
     this.ctx = ctx;
     this.x = this.ctx.canvas.width;
-    this.dist = Math.random() * 100 + 300;
+    this.dist = Math.random() * 100 + 200;
     this.y = Math.random() > 0.5 ? 0 - this.dist : this.dist;
     this.w = Math.random() * 40 + 50;
     this.h = this.ctx.canvas.height;
@@ -18,9 +18,6 @@ class Obstacle {
   }
 
   isVisible() {
-    return (
-      this.x < this.ctx.canvas.width * 2 &&
-      this.x > 0 - this.ctx.canvas.width
-    )
+    return this.x  + this.w > 0;    
   }
 }

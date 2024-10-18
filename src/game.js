@@ -16,16 +16,20 @@ class Game {
       this.draw();
       this.move();
       
-      
-      this.tick ++;
-      this.addObstacle();
-
-      
+      this.tick++;
+      this.checkObstaclesStatus();    
     }, 1000 / 60);
     
 
 
     // TODO: loop. clear, draw, move, addObstacle
+  }
+
+  checkObstaclesStatus() {
+    this.addObstacle();
+      this.clearObstacles(); 
+      this.checkCollisions();
+
   }
 
   addObstacle() {
@@ -36,9 +40,12 @@ class Game {
     }
     // TODO: add new Obstacle every 100 ticks
   }
+  clearObstacles() {
+    this.obstacles = this.obstacles.filter((obstacle)=> obstacle.isVisible());
+  }
 
   clear() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);  
   }
 
   draw() {
@@ -64,10 +71,7 @@ class Game {
     this.obstacles.forEach(obstacle => {
       
       obstacle.move();     
-    });
-
-    this.checkCollisions();
-   
+    });   
   }
 
   onKeyDown(code) {
