@@ -17,7 +17,9 @@ class Game {
       this.draw();
       
       this.tick ++;
+      this.addObstacle();
 
+      
     }, 1000 / 60);
     
 
@@ -26,6 +28,11 @@ class Game {
   }
 
   addObstacle() {
+    if (this.tick >= 100) {
+      this.tick = 0;
+      const obstacle = new Obstacle(this.ctx);
+      this.obstacles.push(obstacle);    
+    }
     // TODO: add new Obstacle every 100 ticks
   }
 
@@ -36,13 +43,26 @@ class Game {
   draw() {
     this.bg.draw();
     this.helicopter.draw();
+
+    this.obstacles.forEach(obstacle => {
+      obstacle.draw();   
+    });
+    
     // TODO: draw everything
   }
 
   move() {
     this.bg.move();
     this.helicopter.move();
-    // TODO: move everything
+    this.obstacles.forEach(obstacle => {
+      
+      obstacle.move();     
+    });
+
+    if (this.helicopter.checkCollision(this.obstacles) || this.helicopter.isFloor()) {
+      this.gameOver();
+    }
+   
   }
 
   onKeyDown(code) {
@@ -54,4 +74,25 @@ class Game {
     this.helicopter.onKeyUp(code);
     // TODO
   }
+
+  gameOver() {
+    // Detener el juego
+    clearInterval(this.intervalId); 
+    this.clear();
+    if(this.bg) {
+      this.bg.draw();
+    }
+    
+    
+
+    this.ctx.fillStyle = 'red';
+    this.ctx.font = '48px sans-serif';
+    this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
+    this.ctx.fillText('Game Over', this.ctx.canvas.width / 2, this.ctx.canvas.height / 2);
+
+    this.obstacles = []; 
+    this.helicopter = null;
+  }
+  
 }

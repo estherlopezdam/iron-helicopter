@@ -44,7 +44,7 @@ class Helicopter {
       this.h
     )
     this.tick ++;
-    if(this.tick > 20) {
+    if(this.tick > 10) {
       this.tick = 0;
       this.img.frameIndex += 1;
       if (this.img.frameIndex >= this.img.frames) {
@@ -145,4 +145,24 @@ class Helicopter {
           break;
    }
   }
+
+  checkCollision(obstacles) {
+    for (let i = 0; i < obstacles.length; i++) {
+      const obstacle = obstacles[i];
+      if (
+       ( this.x < obstacle.x + obstacle.w &&
+        this.x + this.w > obstacle.x ) &&
+        (this.y < obstacle.y + obstacle.h &&
+        this.y + this.h > obstacle.y)
+      ) {
+        return true; // Hay colisión
+      }
+      
+    }
+    
+    return false; // No hay colisión
+  }
+  
+
+  
 }
