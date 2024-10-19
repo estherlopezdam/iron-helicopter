@@ -17,7 +17,8 @@ class Game {
       this.move();
       
       this.tick++;
-      this.checkObstaclesStatus();    
+      this.checkObstaclesStatus();
+
     }, 1000 / 60);
     
 
@@ -27,8 +28,9 @@ class Game {
 
   checkObstaclesStatus() {
     this.addObstacle();
-      this.clearObstacles(); 
-      this.checkCollisions();
+    this.clearObstacles(); 
+    this.checkCollisions();
+     
 
   }
 
@@ -51,6 +53,7 @@ class Game {
   draw() {
     this.bg.draw();
     this.helicopter.draw();
+    
 
     this.obstacles.forEach(obstacle => {
       obstacle.draw();   
@@ -62,7 +65,6 @@ class Game {
     if (this.helicopter.checkCollision(this.obstacles) || this.helicopter.isFloor()) {
       this.gameOver();
     }
-
   }
 
   move() {
@@ -75,6 +77,7 @@ class Game {
   }
 
   onKeyDown(code) {
+    
     this.helicopter.onKeyDown(code);
     // TODO
   }

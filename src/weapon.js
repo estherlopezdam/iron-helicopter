@@ -5,6 +5,7 @@ class Weapon {
   }
 
   shoot() {
+    console.log('Disparando...');
     const bullet = new Bullet(
       this.shooter.ctx,
       this.shooter.x + this.shooter.w * 0.8,
@@ -24,5 +25,6 @@ class Weapon {
 
   move() {
     this.bullets.forEach(b => b.move());
+    this.clearBullets();
   }
 }

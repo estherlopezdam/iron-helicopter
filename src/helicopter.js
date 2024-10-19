@@ -4,7 +4,6 @@ class Helicopter {
     this.tick = 0;
 
     this.x = 100;
-    this.y = 0;
 
     this.w = 100;
     this.h = 40;
@@ -24,10 +23,11 @@ class Helicopter {
     this.img.frameIndex = 0;
     this.img.frameHeight = this.img.height / this.img.frames;
 
-    this.weapon = new Weapon(this);
+    this.weapon = new Weapon(this);    
   }
 
   draw() {
+    this.weapon.draw();
     //this.ctx.drawImage(this.img, this.x, 0, this.w, this.h)
 
     // primer elemento imagen, los 4 siguientes el recorte que haces en la imagen y los siguientes 4 donde lo posiciono en el canvas
@@ -51,9 +51,6 @@ class Helicopter {
           this.img.frameIndex = 0;
       }
     }
-    
-
-    this.weapon.draw();
   }
 
   isFloor() {
@@ -101,6 +98,7 @@ class Helicopter {
       // Si ha tocado el suelo, detener el movimiento vertical
       this.vy = 0;
     }
+    this.weapon.move();
   
       
 
@@ -130,6 +128,10 @@ class Helicopter {
               this.vx = -10;
               this.vy = 0;
           break;
+
+      case SPACE:
+          this.weapon.shoot();
+      break;
    }
   }
 
@@ -147,6 +149,8 @@ class Helicopter {
       case LEFT:
               this.vx = 0;
           break;
+      case SPACE:
+        break;
    }
   }
 
@@ -155,7 +159,7 @@ class Helicopter {
       const obstacle = obstacles[i];
       if (
        ( this.x < obstacle.x + obstacle.w &&
-        this.x + this.w > obstacle.x ) &&
+        this.x + this.w > obstacle.x) &&
         (this.y < obstacle.y + obstacle.h &&
         this.y + this.h > obstacle.y)
       ) {
@@ -166,7 +170,5 @@ class Helicopter {
     
     return false; // No hay colisión
   }
-  
-
-  
+ 
 }
